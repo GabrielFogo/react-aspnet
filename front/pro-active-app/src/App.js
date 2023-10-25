@@ -6,16 +6,16 @@ import AtividadeLista from "./components/AtividadeLista";
 function App() {
   const [index, setIndex] = useState(0);
   const [atividades, setAtividades] = useState([]);
-  const [atividadeSelecionada, setAtividadeSelecionada] = useState({id:0});
+  const [atividadeSelecionada, setAtividadeSelecionada] = useState({ id: 0 });
 
   useEffect(() => {
     atividades.length <= 0 ?
       setIndex(1) :
       setIndex(Math.max.apply(Math, atividades.map((item) => item.id)) + 1)
-  },[atividades])
+  }, [atividades])
 
   function addAtividade(ativ) {
-    setAtividades([...atividades, { ...ativ, id:index}])
+    setAtividades([...atividades, { ...ativ, id: index }])
   }
 
 

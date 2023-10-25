@@ -94,7 +94,6 @@ export default function AtividadeForm(props) {
             name="descricao"
             onChange={inputTextHandler}
             value={atividade.descricao}
-            type="text"
             id="descricao"
             className="form-control"
           />
