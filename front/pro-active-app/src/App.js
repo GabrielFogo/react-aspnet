@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+  import { useEffect, useState } from "react";
 import "./App.css";
 import AtividadeForm from "./components/AtividadeForm";
 import AtividadeLista from "./components/AtividadeLista";
@@ -26,7 +26,7 @@ function App() {
 
   function pegarAtividade(id) {
     const atividade = atividades.filter(atividade => atividade.id === id)
-    setAtividadeSelecionada(atividade[0])
+    setAtividadeSelecionada(atividade)
   }
 
   function cancelarAtividade() {
