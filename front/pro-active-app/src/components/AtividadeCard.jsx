@@ -4,12 +4,10 @@ import { BsFillTrashFill, BsFillBrushFill, BsEmojiSmile, BsEmojiNeutral, BsEmoji
 export default function AtividadeCard(props) {
     function prioridadeLabel(prioridade) {
         switch (prioridade) {
-            case "1":
-                return 'Baixa'
-            case "2":
-                return 'Normal'
-            case "3":
-                return "Alta"
+            case 'Baixa':
+            case 'Normal':
+            case 'Alta':
+                return prioridade
             default:
                 return 'não defenido'
         }
@@ -17,11 +15,11 @@ export default function AtividadeCard(props) {
 
     function prioridadeEstilo(prioridade, icon) {
         switch (prioridade) {
-            case "1":
+            case "Baixa":
                 return icon ? <BsEmojiSmile /> : 'success'
-            case "2":
+            case "Normal":
                 return icon ? <BsEmojiNeutral /> : 'black'
-            case "3":
+            case "Alta":
                 return icon ? <BsEmojiFrown /> : 'danger'
             default:
                 return ''

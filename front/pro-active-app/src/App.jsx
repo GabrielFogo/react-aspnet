@@ -1,18 +1,26 @@
-  import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import AtividadeForm from "./components/AtividadeForm";
 import AtividadeLista from "./components/AtividadeLista";
+import api from './api/atividade';
 
 function App() {
-  const [index, setIndex] = useState(0);
+  const [index] = useState(0);
   const [atividades, setAtividades] = useState([]);
   const [atividadeSelecionada, setAtividadeSelecionada] = useState({ id: 0 });
 
+  const pegarTodasAtividades = async () => {
+    const response = await api.get('atividade')
+    return response.data;
+  }
+
   useEffect(() => {
-    atividades.length <= 0 ?
-      setIndex(1) :
-      setIndex(Math.max.apply(Math, atividades.map((item) => item.id)) + 1)
-  }, [atividades])
+    const getAtividades = async() => {
+      const todasAtividades = await pegarTodasAtividades()
+      if (todasAtividades) setAtividades(todasAtividades)
+    }
+    getAtividades()
+  }, [])
 
   function addAtividade(ativ) {
     setAtividades([...atividades, { ...ativ, id: index }])
@@ -26,7 +34,7 @@ function App() {
 
   function pegarAtividade(id) {
     const atividade = atividades.filter(atividade => atividade.id === id)
-    setAtividadeSelecionada(atividade)
+    setAtividadeSelecionada(atividade[0])
   }
 
   function cancelarAtividade() {
