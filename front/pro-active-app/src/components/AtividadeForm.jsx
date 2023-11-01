@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BsPlusCircle, BsBookmark } from 'react-icons/bs';
+import {BsBookmark } from 'react-icons/bs';
 import { ImBlocked } from 'react-icons/im'
 
 const atividadeInicial = {
@@ -52,7 +52,6 @@ export default function AtividadeForm(props) {
   }
   return (
     <>
-      <h1>Atividade {atividade.id !== 0 ? atividade.id : ''}</h1>
       <form className="mt-1 row g-3" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <label htmlFor="titulo" className="form-label">
@@ -102,8 +101,8 @@ export default function AtividadeForm(props) {
         <div>
           {
             atividade.id === 0 ?
-              <button className="btn btn-outline-secondary" type='submit'>
-                <BsPlusCircle className='me-1' />Adicionar
+              <button className="btn btn-outline-primary d-inline-flex align-items-center">
+                <BsBookmark className='me-1' /> Salvar
               </button>
               :
               <>

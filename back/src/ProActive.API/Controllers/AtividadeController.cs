@@ -27,17 +27,17 @@ namespace ProActive.API.Controllers
         }
 
         [HttpPost]
-        public IEnumerable<Atividade> Post(Atividade atividade)
+        public Atividade? Post(Atividade atividade)
         {
             _dataContext.Atividades.Add(atividade);
             if (_dataContext.SaveChanges() > 0)
-                return _dataContext.Atividades;
+                return _dataContext.Atividades.FirstOrDefault(ativ => ativ.Id == atividade.Id);
             else
                 throw new Exception("Voce não conseguiu adicionar uma tarefa");
         }
 
         [HttpPut("{id}")]
-        public Atividade Put(int id, Atividade atividade)
+        public Atividade? Put(int id, Atividade atividade)
         {
             if (atividade.Id != id)
                 throw new Exception("Você esta tentando atualizar a atividade errada");

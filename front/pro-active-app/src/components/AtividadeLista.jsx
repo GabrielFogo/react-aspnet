@@ -10,6 +10,8 @@ export default function AtividadeLista(props) {
           ativ={ativ}
           deletarAtividade={props.deletarAtividade}
           pegarAtividade={props.pegarAtividade}
+          toggleDeletarModal ={props.toggleDeletarModal }
+          deletarModal={props.deletarModal}
         />
       ))}
     </div>

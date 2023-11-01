@@ -1,7 +1,8 @@
-import React from 'react'
 import { BsFillTrashFill, BsFillBrushFill, BsEmojiSmile, BsEmojiNeutral, BsEmojiFrown } from 'react-icons/bs'
+import { Modal } from "react-bootstrap";
 
 export default function AtividadeCard(props) {
+
     function prioridadeLabel(prioridade) {
         switch (prioridade) {
             case 'Baixa':
@@ -27,6 +28,7 @@ export default function AtividadeCard(props) {
     }
 
     return (
+        <>
         <div key={props.ativ.id} className={"card mb-2 border-" + prioridadeEstilo(props.ativ.prioridade)}>
             <div className="d-flex justify-content-between card-header">
                 <h5 className=" card-title ">
@@ -47,11 +49,21 @@ export default function AtividadeCard(props) {
                     <button className="btn btn-outline-primary me-2" onClick={() => props.pegarAtividade(props.ativ.id)}>
                         <BsFillBrushFill /> Editar
                     </button>
-                    <button className="btn btn-outline-danger" onClick={() => props.deletarAtividade(props.ativ.id)}>
+                    <button className="btn btn-outline-danger" onClick={() => props.toggleDeletarModal()}>
                         <BsFillTrashFill /> Deletar
                     </button>
                 </div>
             </div>
         </div>
+        <Modal show={props.deletarModal} onHide={props.toggleDeletarModal}>
+        <Modal.Header closeButton>
+          <Modal.Title><h3>Deletar Atividade "{props.ativ.titulo}" ?</h3></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <button className="btn btn-outline-success me-1" onClick={() => props.deletarAtividade(props.ativ.id)}>Sim</button>
+          <button className="btn btn-danger" onClick={props.toggleDeletarModal}>Não</button>
+        </Modal.Body>
+      </Modal>
+      </>
     )
 }
