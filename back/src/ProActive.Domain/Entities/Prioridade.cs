@@ -1,4 +1,4 @@
-﻿namespace ProActive.API.Models
+﻿namespace ProActive.Domain.Entities
 {
     public enum Prioridade
     {
