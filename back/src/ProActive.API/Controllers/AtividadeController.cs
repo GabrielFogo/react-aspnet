@@ -67,14 +67,20 @@ namespace ProActive.API.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Atividade model)
+        [HttpPut("{id:int}/{titulo}")]
+        public async Task<IActionResult> Put(int id,string titulo,Atividade model)
         {
             try
             {
+                
                 if (model.Id != id)
                     this.StatusCode(StatusCodes.Status409Conflict,
                         "Você está tentando atualizar a atividade errada");
+                if(model.Titulo == titulo)
+                {
+                    this.StatusCode(StatusCodes.Status409Conflict,
+                       "Você está tentando atualizar uma atividade passando um titulo ja existente");
+                }
 
                 var atividade = await _atividadeService.AtualizarAtividade(model);
                 if (atividade == null) return NoContent();

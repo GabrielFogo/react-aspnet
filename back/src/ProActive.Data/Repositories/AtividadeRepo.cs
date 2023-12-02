@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ProActive.Data.Context;
 using ProActive.Domain.Entities;
 using ProActive.Domain.Interfaces.Repositories;
@@ -48,5 +43,6 @@ namespace ProActive.Data.Repositories
 
             return await query.ToArrayAsync();
         }
+
     }
 }

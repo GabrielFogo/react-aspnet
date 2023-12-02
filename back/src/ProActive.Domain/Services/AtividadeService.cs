@@ -29,6 +29,12 @@ namespace ProActive.Domain.Services
 
         public async Task<Atividade> AtualizarAtividade(Atividade model)
         {
+            var atividade = await _atividadeRepo.PegaPorTituloAsync(model.Titulo);
+            if (atividade != null && atividade.Id != model.Id)
+            {
+                throw new Exception("Você esta atualizando para um titulo que ja existe");
+            }
+
             if (model.DataConclusao != null)
                 throw new Exception("Não se pode alterar atividade já concluída.");
 
@@ -56,9 +62,7 @@ namespace ProActive.Domain.Services
 
         public async Task<bool> DeletarAtividade(int atividadeId)
         {
-            var atividade = await _atividadeRepo.PegaPorIdAsync(atividadeId);
-            if (atividade == null) throw new Exception("Atividade que tentou deletar não existe");
-
+            var atividade = await _atividadeRepo.PegaPorIdAsync(atividadeId) ?? throw new Exception("Atividade que tentou deletar não existe");
             _atividadeRepo.Deletar(atividade);
             return await _atividadeRepo.SalvarMudancasAsync();
         }

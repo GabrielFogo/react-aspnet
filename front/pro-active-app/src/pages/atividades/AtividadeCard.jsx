@@ -32,7 +32,7 @@ export default function AtividadeCard(props) {
         <div key={props.ativ.id} className={"card mb-2 border-" + prioridadeEstilo(props.ativ.prioridade)}>
             <div className="d-flex justify-content-between card-header">
                 <h5 className=" card-title ">
-                    <span className={" badge bg-secondary"}>{props.ativ.id}</span> - {props.ativ.titulo}
+                    <span className={" badge bg-black"}>{props.ativ.id}</span> - {props.ativ.titulo}
                 </h5>
                 <h6>
                     Prioridade:
